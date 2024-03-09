@@ -6,7 +6,7 @@ class Item(models.Model):
     price = models.IntegerField()
 
     def __str__(self):
-        return self.name
+        return f'Элемент {self.name} цена {self.price} '
 
 
 class Purchase(models.Model):
@@ -16,4 +16,4 @@ class Purchase(models.Model):
     date_purchase = models.DateTimeField()
 
     def __str__(self):
-        return self.name
+        return f'Покупка Название {self.name} дата {self.age} дата покупки{self.date_purchase}'
