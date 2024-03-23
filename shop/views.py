@@ -1,26 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 
 from django.http import HttpResponse
+from django.views.generic import ListView, DetailView
 
 from .models import Item, Purchase
 
 
-def list_item(request):
-    items = Item.objects.filter()
-    context = {
-        "items": items,
-    }
-    return render(request, "list_item.html", context)
+class ItemListView(ListView):
+    model = Item
+    template_name = 'list_item.html'
+    context_object_name = 'items'
 
-
-def detail_item(request, id):
-    item = Item.objects.get(id=id)
-    purchases = item.purchase_set.all()
-    context = {
-        "item": item,
-        "purchases": purchases
-        }
-    return render(request, "detail_item.html", context)
+class ItemDetailView(DetailView):
+    model = Item
+    template_name = 'detail_item.html'
+    context_object_name = 'item'
 
 
 def greetings(request):
